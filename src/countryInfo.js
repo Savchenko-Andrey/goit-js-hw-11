@@ -1,7 +1,7 @@
 export function countryInfo(common, svg, languages, capital, population) {
     return ` <div class="container">
     <img class="list-img" src="${svg}" alt="${common}" />
-        <h2 class="description animate__animated animate__shakeX" >${common}</h2>
+        <h2 class="description" >${common}</h2>
         </div>
         <ul>
           <li class="list-item animate__animated animate__backInRight">

@@ -24,7 +24,7 @@ refs.input.addEventListener('input', _(onSearch, DEBOUNCE_DELAY));
 function onSearch (e) {
     e.preventDefault();
 
-    form = e.target.value;
+    let form = e.target.value;
     if (form.trim() === '') {
         return;
     }
