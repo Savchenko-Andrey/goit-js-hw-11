@@ -8,7 +8,7 @@ function fetchCountries(countryName){
     .then(response =>  {
         if (!response.ok) {
             Notiflix.Notify.failure('Oops, there is no country with that name');
-            return [];
+            throw new Error(response.status);
           }
           return response.json();
         })
