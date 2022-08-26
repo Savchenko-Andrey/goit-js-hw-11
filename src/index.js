@@ -1,86 +1,61 @@
-import './css/styles.css';
-import Notiflix from 'notiflix';
-import * as _ from 'lodash.debounce';
-import { fetchCountries } from './fetchCountries.js';
-import { listInfo } from './listInfo.js';
-import { countryInfo } from './countryInfo.js';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import OnlyScroll from 'only-scrollbar';
+import _ from 'lodash.debounce';
+import { refs } from './js/refs';
+import createCard from './js/renderCard';
+import { FetchBictchWorking } from './js/fetchAx';
+let query = '';
+let PAGE = 1;
 
-Notiflix.Notify.init({
-    width: '380px',
-    position: 'right-top',
-    distance: '16px',
-});
+let classIsCool = new FetchBictchWorking();
 
-const DEBOUNCE_DELAY = 300;
+export function card(data) {
+  data.map((item, indx) => {
+    refs.galery.insertAdjacentHTML('beforeend', createCard(item));
+  });
 
-const refs = {
-    input: document.querySelector('#search-box'),
-    country: document.querySelector('.country-list'),
-    info: document.querySelector('.country-info'),
+
+  let gallery = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionSelector: 'img',
+    captionDelay: 250,
+    overlayOpacity: 0.9,
+    close: false,
+  });
+  gallery.on('show.simplelightbox');
 }
 
-refs.input.addEventListener('input', _(onSearch, DEBOUNCE_DELAY));
+function onSmoothScroll() {
+  const { height: cardHeight } =
+    refs.form.firstElementChild.getBoundingClientRect();
 
-function onSearch (e) {
-    e.preventDefault();
-
-    let form = e.target.value;
-    if (form.trim() === '') {
-        return;
-    }
-    
-    fetchCountries(form.trim()).then(form => {
-        clearHTMLList();
-    
-        if (form.length === 1) {
-            Notiflix.Notify.success('Correct name');
-            return infoCountry(form);
-          } else if (form.length > 1) {
-            return renderCountries(form);
-          }
-    })
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
 
+function handleOnSubmit(event) {
+  PAGE = 1;
+  refs.galery.innerHTML = '';
+  event.preventDefault();
+  const { searchQuery } = event.target;
+  query = searchQuery.value;
+  classIsCool.onFetchArticle(query, PAGE);
+  onSmoothScroll();
+}
 
-
-function clearHTMLList() {
-    refs.info.innerHTML = '';
-    refs.country.innerHTML = '';
+function onEndnessScroll() {
+  const scroll = new OnlyScroll(window, {
+    damping: 0.2,
+    eventContainer: document.scrollingElement,
+  });
+  if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+    classIsCool.onFetchArticle(query, (PAGE += 1));
   }
-    
-
-
-function renderCountries(countries) {
-    countries.forEach(item => {
-        const {
-            name: {official},
-            flags: {svg},
-            } = item
-            renderList(official, svg)
-    })
 }
 
-function infoCountry(country){
-    const {
-        name: { official },
-        flags: { svg },
-        languages,
-        capital,
-        population,
-      } = country[0];
-
-      const value = Object.values(languages)
-      refs.info.insertAdjacentHTML(
-        'afterbegin',
-        countryInfo(official, svg, value, capital, population)
-      );
-}
-
-function renderList(country, img) {
-    refs.country.insertAdjacentHTML(
-      'afterbegin',
-      listInfo(country, img)
-    );
-  }
-
-
+// listener
+window.addEventListener('scroll', _(onEndnessScroll, 500));
+refs.form.addEventListener('submit', handleOnSubmit);

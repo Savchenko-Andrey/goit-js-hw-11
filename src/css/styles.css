@@ -11,40 +11,103 @@ body {
   color: #212121;
   line-height: 1.5;
 }
-
-#search-box {
-  font: inherit;
-  padding: 8px;
-  max-width: 320px;
-  margin-top: 20px;
-  margin-bottom: 16px;
-  margin-left: 40px;
-  border: rgb(109, 109, 211) solid 2px;
-  border-radius: 5px;
+p {
+  text-align: center;
 }
 
-#search-box:hover,
-#search-box:focus {
-  border: #c55f5f solid 2px;
-}
-
-.country-list {
+list,
+ul {
+  list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-.container{
+.section {
   display: flex;
+  flex-direction: column;
 }
 
-.list-item {
-  list-style: none;
+.gallery {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  grid-gap: 5px;
+}
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.list-img {
-  margin-left: 40px;
-  margin-top: 10px;
-  margin-right: 20px;
-  max-width: 70px;
-  max-height: 70px;
-  padding-bottom: 10px;
+.info {
+  width: 94%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
 }
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+.gallery__img {
+  width: 292px;
+  height: 240px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.info-item:last-child {
+  margin-right: 0;
+}
+
+.conteiner-form {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: blue;
+}
+
+.search-form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input {
+  width: 200px;
+  height: 30px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+}
+
+.btn-form {
+  margin-left: 15px;
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  background-color: yellow;
+  color: black;
+}
+
+.load-btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.disable {
+  display: none;
+}
+
