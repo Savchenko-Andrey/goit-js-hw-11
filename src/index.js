@@ -49,7 +49,7 @@ function handleOnSubmit(event) {
 
 function onEndnessScroll() {
   const scroll = new OnlyScroll(window, {
-    damping: 0.2,
+    damping: 0.7,
     eventContainer: document.scrollingElement,
   });
   if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
