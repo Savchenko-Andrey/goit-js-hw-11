@@ -12,7 +12,7 @@ let classIsCool = new WorkingFetch
 ();
 
 export function card(data) {
-  data.map((item, indx) => {
+  data.map((item) => {
     refs.galery.insertAdjacentHTML('beforeend', createCard(item));
   });
 
