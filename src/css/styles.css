@@ -55,7 +55,7 @@ ul {
 }
 
 .info {
-  width: 94%;
+  width: 297px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,7 +73,7 @@ ul {
   margin-right: 6px;
 }
 .gallery__img {
-  width: 370px;
+  width: 297px;
   height: 325px;
   object-fit: cover;
   cursor: pointer;
