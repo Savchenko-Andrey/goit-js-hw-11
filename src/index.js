@@ -4,11 +4,12 @@ import OnlyScroll from 'only-scrollbar';
 import _ from 'lodash.debounce';
 import { refs } from './js/refs';
 import createCard from './js/renderCard';
-import { FetchBictchWorking } from './js/fetchAx';
+import { WorkingFetch } from './js/fetchAx';
 let query = '';
 let PAGE = 1;
 
-let classIsCool = new FetchBictchWorking();
+let classIsCool = new WorkingFetch
+();
 
 export function card(data) {
   data.map((item, indx) => {
@@ -21,7 +22,7 @@ export function card(data) {
     captionSelector: 'img',
     captionDelay: 250,
     overlayOpacity: 0.9,
-    close: false,
+    close: true,
   });
   gallery.on('show.simplelightbox');
 }

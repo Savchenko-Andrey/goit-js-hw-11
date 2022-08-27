@@ -10,7 +10,7 @@ export default function createCard(item) {
     } = item;
     return `
       <div class="photo-card">
-       <a href="${largeImageURL}">
+       <a class="photo-card-shadow" href="${largeImageURL}">
           <img class="gallery__img" src="${webformatURL}" alt="${tags}" />
           </a>
           <div class="info">

@@ -4,7 +4,7 @@ import { card } from '../index';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 
-export class FetchBictchWorking {
+export class WorkingFetch {
   constructor() {}
   async getFetchData(tags, PAGE) {
     const get = await axios
@@ -55,5 +55,6 @@ export class FetchBictchWorking {
   }
 }
 
-const wtf = new FetchBictchWorking();
+const wtf = new WorkingFetch
+();
 
